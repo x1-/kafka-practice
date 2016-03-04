@@ -3,7 +3,9 @@ package com.inkenkun.x1.kafka.practice
 import java.lang.{Integer => JavaInt, String => JavaString}
 
 import com.typesafe.config.ConfigFactory
-import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord, RecordMetadata, Callback}
+import joptsimple._
+
+import org.apache.kafka.clients.producer.{KafkaProducer, ProducerConfig, ProducerRecord, RecordMetadata, Callback}
 
 case class Producer( topic: String, brokers: String ) {
 
@@ -19,6 +21,7 @@ case class Producer( topic: String, brokers: String ) {
       new PracticeCallback( System.currentTimeMillis(), key, message )
     )
 
+  def close() = producer.close()
 }
 
 class PracticeCallback( startTime: Long, key: Int, message: String ) extends Callback {
