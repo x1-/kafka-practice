@@ -26,6 +26,8 @@ object Main {
       val props    = ConsoleProducer.getNewProducerProps( config )
       props.put( "metadata.fetch.timeout.ms", "1000" )
 
+      println( props )
+
       val producer = new NewShinyProducer( props )
 
       Runtime.getRuntime.addShutdownHook( new Thread() {
